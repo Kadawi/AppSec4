@@ -1,15 +1,18 @@
-FROM ubuntu:18.04.3
+FROM ubuntu:18.04
 
+PATH ./AppSec4
 
-RUN apt-get update -y && \
-    apt-get install -y python-pip python-dev
+RUN apt-get update -y 
+RUN apt-get install -y python-pip python-dev
 
-COPY requirements.txt
+COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
 COPY . /AppSec4
 
-ENTRYPOINT [ "python" ]
+ENV FLASK_APP AppSec4/app.py
 
-CMD [flask run]
+EXPOSE 8080
+
+ENTRYPOINT [ "flask run" ]
