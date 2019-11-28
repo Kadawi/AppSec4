@@ -1,18 +1,14 @@
 FROM ubuntu:18.04
 
-PATH ./AppSec4
-
 RUN apt-get update -y 
-RUN apt-get install -y python-pip python-dev
+RUN apt-get install -y python3 python3-pip python3-flask
 
-COPY requirements.txt requirements.txt
+COPY ./ ./AppSec4
+WORKDIR ./AppSec4
 
-RUN pip install -r requirements.txt
-
-COPY . /AppSec4
-
-ENV FLASK_APP AppSec4/app.py
+RUN pip3 install -r requirements.txt 
 
 EXPOSE 8080
 
-ENTRYPOINT [ "flask run" ]
+RUN export FLASK_APP=app.py
+CMD flask run

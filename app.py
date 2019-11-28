@@ -1,4 +1,3 @@
-
 from flask import Flask, request, render_template, redirect, url_for, request, session, flash, g
 from flask_api import status
 from functools import wraps
@@ -10,8 +9,6 @@ from passlib.hash import sha256_crypt, pbkdf2_sha256
 from flask_sqlalchemy import SQLAlchemy
 #from flask_sqlalchemy.exc import IntegrityError
 from datetime import datetime
-
-
 
 app = Flask(__name__)
 #talisman = Talisman(app, force_https=False)
