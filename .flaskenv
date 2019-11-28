@@ -1,3 +1,3 @@
 FLASK_APP=app.py
-export LC_ALL=C.UTF-8
-export LANG=C.UTF-8
+LC_ALL=C.UTF-8
+LANG=C.UTF-8
