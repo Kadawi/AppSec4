@@ -1,0 +1,16 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+    flask:
+        image: spellcheck
+        build:
+            context: .
+            dockerfile: dockerfile
+        volumes:
+            - "./:/AppSec4"
+        ports:
+            - 8080:8080
+
+
