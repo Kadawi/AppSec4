@@ -1,6 +1,6 @@
 # docker-compose.yml
 
-version: '3'
+version: '3.1'
 
 services:
     flask:
@@ -12,5 +12,25 @@ services:
             - "./:/AppSec4"
         ports:
             - 8080:8080
+        deploy:
+            replicas: 4
+        secrets:
+          - admin_un
+          - admin_pw
+          - secret_kee
+          - admin_twofa
+
+secrets:
+    admin_un:
+        external: true
+    admin_pw:
+        external: true
+    secret_kee:
+        external: true
+    admin_twofa:
+        external: true
+
+
+
 
 

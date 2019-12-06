@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 app.config.from_object('config.DefaultConfig')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///spell.db'
+app.config['SECRET_KEY'] = open("/run/secrets/secret_kee", "r").read().strip()
 db = SQLAlchemy(app)
 
 
@@ -51,8 +52,12 @@ class Logs(db.Model):
 db.create_all()
 Users = {}
 
+admin_un = open("/run/secrets/admin_un", "r").read().strip()
+admin_pw = open("/run/secrets/admin_pw", "r").read().strip()
+admin_twofa = open("/run/secrets/admin_twofa", "r").read().strip()
+
 if (db.session.query(User.id).filter_by(username='admin').scalar() is None):
-    admin = User(username='admin', password=pbkdf2_sha256.hash('Administrator@1'), twofa='12345678901', isadmin=True)
+    admin = User(username=admin_un, password=pbkdf2_sha256.hash(admin_pw), twofa=admin_twofa, isadmin=True)
     db.session.add(admin)
     db.session.commit()
 
